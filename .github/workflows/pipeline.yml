@@ -2,7 +2,7 @@ name: Lint, Test & Build
 on:
   pull_request:
     branches:
-      - "development"
+      - "develop"
 jobs:
   Lint-Test-Build:
     runs-on: ubuntu-latest
