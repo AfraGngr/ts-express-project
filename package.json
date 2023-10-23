@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "tsc -p tsConfig.build.json",
+        "build": "tsc -p tsconfig.build.json",
         "commit": "commit",
         "dev": "nodemon ./src/index.ts",
         "format": "prettier ./src/**/*.ts --write",
