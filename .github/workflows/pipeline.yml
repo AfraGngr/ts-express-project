@@ -5,7 +5,7 @@ name: Lint, Test & Build
 #       - "development"
 on: push
 jobs:
-  Linting:
+  Lint-Test-Build:
     runs-on: ubuntu-latest
     steps:
       - name: Get the code
