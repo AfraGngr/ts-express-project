@@ -1,9 +1,8 @@
 name: Lint, Test & Build
-# on:
-#   pull_request:
-#     branches:
-#       - "development"
-on: push
+on:
+  pull_request:
+    branches:
+      - "development"
 jobs:
   Lint-Test-Build:
     runs-on: ubuntu-latest
