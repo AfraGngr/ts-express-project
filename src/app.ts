@@ -1,6 +1,8 @@
-import express, { Express, Request, Response } from 'express';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import express, { Express, NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import { authRoutes } from './routes/authRoutes';
+import { stat } from 'fs';
 
 export const app: Express = express();
 
@@ -18,4 +20,18 @@ app.use('/api/v1/auth', authRoutes);
 
 app.all('*', (req: Request, res: Response) => {
     res.status(404).end();
+});
+
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    let message: string = 'Something went wrong';
+    let statusCode: number = 500;
+    let status: string = 'error';
+
+    if (err instanceof Error) {
+        message = err.message;
+        statusCode = 400;
+        status = 'fail';
+    }
+
+    res.status(statusCode).send({ status, message });
 });
