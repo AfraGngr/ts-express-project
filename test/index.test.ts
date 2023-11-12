@@ -1,5 +1,6 @@
 import request from 'supertest';
-import { server, app } from '../src/index';
+import { server } from '../src/index';
+import { app } from '../src/app';
 
 const req = request(app);
 
