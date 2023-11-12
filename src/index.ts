@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import dotenv from 'dotenv';
 import { Server } from 'http';
-import prisma from '../utils/client'; // FIXME: clientı buraya mı taşımak lazım ?
+import prisma from './utils/client';
 
 dotenv.config({ path: './.config.env' });
 
