@@ -11,7 +11,7 @@ interface UserData {
 export class AuthService {
     constructor() {}
 
-    public register = async (data: UserData): Promise<void> => {
+    public register = async (data: UserData): Promise<[]> => {
         const { firstName, lastName, password, email } = data;
 
         await prisma.user.create({
@@ -23,5 +23,7 @@ export class AuthService {
                 roleId: 1,
             },
         });
+
+        return [];
     };
 }
