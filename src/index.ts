@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import { Server } from 'http';
 import prisma from './utils/client';
 
-dotenv.config({ path: './.config.env' });
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 const port = process.env.PORT;
 
