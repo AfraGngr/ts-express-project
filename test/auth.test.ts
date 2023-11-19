@@ -73,5 +73,6 @@ describe('Authentication tests', () => {
 afterAll(async () => {
     server.close();
     await prisma.user.delete({ where: { email: userData.email } });
+    await prisma.user.deleteMany();
     await prisma.$disconnect();
 });

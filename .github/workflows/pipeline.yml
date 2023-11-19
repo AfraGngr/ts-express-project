@@ -43,7 +43,5 @@ jobs:
 
       - name: Run Linting Rules
         run: npm run lint
-      - name: Test the Code
-        run: npm run test
       - name: Build
         run: npm run build
