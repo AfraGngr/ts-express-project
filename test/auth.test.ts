@@ -12,6 +12,18 @@ interface IUserInfo {
     confirmPassword: string;
 }
 
+interface IRole {
+    id?: number;
+    name: string;
+    code: string;
+}
+
+const roleData: IRole = {
+    id: 5,
+    name: 'Guest',
+    code: 'roleCode',
+};
+
 const userData: IUserInfo = {
     firstName: 'Afra',
     lastName: 'Güngör',
@@ -19,6 +31,10 @@ const userData: IUserInfo = {
     password: 'Afra123!',
     confirmPassword: 'Afra123!',
 };
+
+beforeAll(async () => {
+    await prisma.role.create({ data: roleData });
+});
 
 describe('Authentication tests', () => {
     describe('Register route', () => {
