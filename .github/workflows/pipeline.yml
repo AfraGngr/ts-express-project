@@ -1,11 +1,32 @@
 name: Lint, Test & Build
 on:
-  pull_request:
-    branches:
-      - "develop"
+  push
+  # pull_request:
+  #   branches:
+  #     - "develop"
 jobs:
   Lint-Test-Build:
     runs-on: ubuntu-latest
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: boilerplatedb_test
+        ports:
+          - 5432:5432
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/boilerplatedb_test?schema=public
     steps:
       - name: Get the code
         uses: actions/checkout@v3
@@ -15,6 +36,11 @@ jobs:
           node-version: "18.x"
       - name: Install Dependencies
         run: npm ci
+      - name: Test
+        run: |
+          npx prisma db push
+          npm run test
+
       - name: Run Linting Rules
         run: npm run lint
       - name: Test the Code
