@@ -12,8 +12,12 @@
         "format": "prettier ./src/**/*.ts --write",
         "lint": "eslint ./src/**/*.ts --fix",
         "prepare": "husky install",
-        "prisma:migrate": "dotenv  -e .config.env npx prisma migrate dev",
-        "prisma:push": "dotenv  -e .config.env npx prisma db push"
+        "migrate:dev": "dotenv  -e .env.development npx prisma migrate dev",
+        "push:dev": "dotenv  -e .env.development npx prisma db push",
+        "migrate:test": "dotenv  -e .env.test npx prisma migrate dev",
+        "push:test": "dotenv  -e .env.test npx prisma db push",
+        "migrate:prod": "dotenv  -e .env.production npx prisma migrate dev",
+        "push:prod": "dotenv  -e .env.production npx prisma db push"
     },
     "keywords": [],
     "author": "",

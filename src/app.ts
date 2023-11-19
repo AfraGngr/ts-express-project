@@ -2,7 +2,6 @@
 import express, { Express, NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import { authRoutes } from './routes/authRoutes';
-import { stat } from 'fs';
 
 export const app: Express = express();
 
@@ -32,6 +31,9 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
         statusCode = 400;
         status = 'fail';
     }
+
+    /* eslint-disable */
+    console.log(message);
 
     res.status(statusCode).send({ status, message });
 });
