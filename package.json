@@ -17,7 +17,8 @@
         "migrate:test": "dotenv  -e .env.test npx prisma migrate dev",
         "push:test": "dotenv  -e .env.test npx prisma db push",
         "migrate:prod": "dotenv  -e .env.production npx prisma migrate dev",
-        "push:prod": "dotenv  -e .env.production npx prisma db push"
+        "push:prod": "dotenv  -e .env.production npx prisma db push",
+        "deploy": "dotenv -e .env.production npx prisma migrate deploy"
     },
     "keywords": [],
     "author": "",
