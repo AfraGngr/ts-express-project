@@ -29,37 +29,35 @@ beforeAll(async () => {
     await prisma.role.create({ data: roleData });
 });
 
-describe('Authentication tests', () => {
-    describe('Register route', () => {
-        it('should return 400 when required parameters are not provided', async () => {
-            await req
-                .post(`/api/v1/auth/register`)
-                .send({
-                    firstName: userData.firstName,
-                    password: userData.password,
-                    confirmPassword: userData.confirmPassword,
-                })
-                .expect(400);
+describe('Register route', () => {
+    it('should return 400 when required parameters are not provided', async () => {
+        const res = await req.post(`/api/v1/auth/register`).send({
+            firstName: userData.firstName,
+            password: userData.password,
+            confirmPassword: userData.confirmPassword,
         });
 
-        it('sould return 201', async () => {
-            await req.post(`/api/v1/auth/register`).send(userData).expect(201);
-        });
+        expect(res.status).toBe(400);
+    });
 
-        it('should return 400 if user already exist.', async () => {
-            const res = await req
-                .post(`/api/v1/auth/register`)
-                .send({
-                    firstName: userData.firstName,
-                    lastName: userData.lastName,
-                    email: userData.email,
-                    password: userData.password,
-                    confirmPassword: userData.confirmPassword,
-                })
-                .expect(400);
+    it('sould return 201', async () => {
+        const res = await req.post(`/api/v1/auth/register`).send(userData);
+        expect(res.status).toBe(201);
+    });
 
-            expect(res.body.message).toBe('This user is already registered.');
-        });
+    it('should return 400 if user already exist.', async () => {
+        const res = await req
+            .post(`/api/v1/auth/register`)
+            .send({
+                firstName: userData.firstName,
+                lastName: userData.lastName,
+                email: userData.email,
+                password: userData.password,
+                confirmPassword: userData.confirmPassword,
+            })
+            .expect(400);
+
+        expect(res.body.message).toBe('This user is already registered.');
     });
 });
 
