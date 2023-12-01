@@ -9,7 +9,7 @@ export const validateBodyMiddleware = (schema: z.ZodSchema): RequestHandler => {
         } catch (err: unknown) {
             if (err instanceof z.ZodError) {
                 next(new Error(err.issues[0].message));
-            }
+            } else next(new Error(err as unknown as string));
         }
     };
 };
