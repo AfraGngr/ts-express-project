@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+export type TRegisterRequest = z.infer<typeof registerSchema>;
+
 export const registerSchema = z
     .object({
         firstName: z

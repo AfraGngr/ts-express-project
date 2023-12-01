@@ -2,16 +2,9 @@ import request from 'supertest';
 import { server } from '../src/index';
 import { app } from '../src/app';
 import prisma from '../src/utils/client';
+import { TRegisterRequest } from '../src/utils/schemas';
 
 const req = request(app);
-interface IUserInfo {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-}
-
 interface IRole {
     id?: number;
     name: string;
@@ -24,7 +17,7 @@ const roleData: IRole = {
     code: 'roleCode',
 };
 
-const userData: IUserInfo = {
+const userData: TRegisterRequest = {
     firstName: 'Afra',
     lastName: 'Güngör',
     email: 'afra.development@gmail.com',
