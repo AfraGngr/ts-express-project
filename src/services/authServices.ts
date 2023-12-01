@@ -15,7 +15,7 @@ export class AuthService {
     public register = async (data: UserData): Promise<[]> => {
         const { firstName, lastName, password, email } = data;
 
-        const hashedPassword = bcrypt.hashSync(password, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         const isExist = await prisma.user.findUnique({ where: { email } });
         if (isExist) throw new Error('This user is already registered.');
