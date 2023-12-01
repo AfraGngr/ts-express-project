@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import express, { Express, NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import { authRoutes } from './routes/authRoutes';
@@ -21,7 +20,7 @@ app.all('*', (req: Request, res: Response) => {
     res.status(404).end();
 });
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
     let message: string = 'Something went wrong';
     let statusCode: number = 500;
     let status: string = 'error';

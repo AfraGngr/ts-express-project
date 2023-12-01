@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import dotenv from 'dotenv';
 import { Server } from 'http';
-import prisma from './utils/client';
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
