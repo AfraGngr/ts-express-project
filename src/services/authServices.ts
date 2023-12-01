@@ -1,18 +1,11 @@
 import prisma from '../utils/client';
 import bcrypt from 'bcrypt';
-
-interface UserData {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-    passwordConfirm: string;
-}
+import { TRegisterRequest } from '../utils/schemas';
 
 export class AuthService {
     constructor() {}
 
-    public register = async (data: UserData): Promise<[]> => {
+    public register = async (data: TRegisterRequest): Promise<[]> => {
         const { firstName, lastName, password, email } = data;
 
         const hashedPassword = await bcrypt.hash(password, 10);
