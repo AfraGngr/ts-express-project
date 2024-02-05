@@ -32,7 +32,7 @@ To run and test ts-project, you need to have the following installed on your mac
 - Before starting the application, seed the database by running:
 
     ```bash
-    npm run migrate:dev
+    npm run seed
     ```
     This will populate the database with initial data necessary for the application.
 
